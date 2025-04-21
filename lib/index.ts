@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 
 import { analyze } from "./analyzer";
 import { runReactSniffer } from "./reactsniffer";
