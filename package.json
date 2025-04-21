@@ -36,12 +36,12 @@
     "@babel/traverse": "7.25.3",
     "csv-parse": "5.5.6",
     "csv-stringify": "6.5.1",
-    "reactsniffer": "1.0.19",
-    "tsx": "4.17.0"
+    "reactsniffer": "1.0.19"
   },
   "devDependencies": {
     "@types/babel__traverse": "7.20.6",
     "@types/babel-types": "7.0.15",
+    "tsx": "4.17.0",
     "typescript": "5.5.4",
     "vitest": "2.0.5"
   }
