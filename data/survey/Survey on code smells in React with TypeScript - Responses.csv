@@ -1,0 +1,35 @@
+Carimbo de data/hora,Select your Country,React experience time,How many projects have you participated in or contributed to that utilized React with TypeScript?,any_type_frequency,non_null_assertions_frequency,missing_union_type_abstraction_frequency,enum_implicit_values_frequency,any_type_negative_impact,non_null_assertions_negative_impact,missing_union_type_abstraction_negative_impact,enum_implicit_values_negative_impact,multiple_booleans_for_state_frequency,overly_flexible_props_frequency,multiple_booleans_for_state_negative_impact,overly_flexible_props_negative_impact,"Please share your observations, experiences, or any other TypeScript and React smells you have encountered in React projects."
+25/10/2023 16:10:20,Brazil,Between 1 and 3 years,6 or more projects,Often,Often,Often,Often,Very high,High,High,Moderate,Often,Often,Very low,Very low,
+26/10/2023 10:16:56,Jamaica,Between 3 and 5 years,3-5 projects,Sometimes,Occasionally,Rare,Often,High,Moderate,Moderate,High,Occasionally,Sometimes,Moderate,Moderate,
+27/10/2023 14:51:41,Norway,More than 5 years,1-2 projects,Rare,Very rare,Occasionally,Very rare,High,High,Low,Low,Often,Very rare,Very high,Very low,
+27/10/2023 17:00:38,Germany,Less than 1 year,1-2 projects,Rare,Often,Often,Rare,Very high,Moderate,Very low,Very high,Sometimes,Very rare,Very high,Very high,"The non-null assertion is something that i see very frequently. 
+
+Especially when the object is being fetched from an API, you usually have a undefined state beit while loading or of the very nature of the object itself (user obejct with a lot of optional config keys)
+
+Enums without values seemed always very dangerous to me. Especially debugging becomes an utter nightmare when all you get is the index number of the key..."
+28/10/2023 14:51:13,Ukraine,Between 3 and 5 years,6 or more projects,Occasionally,Occasionally,Very rare,Very rare,Very high,High,Moderate,High,Rare,Very rare,Moderate,Moderate,
+29/10/2023 15:29:57,Cuba,Between 1 and 3 years,3-5 projects,Very rare,Rare,Very rare,Very rare,Very high,Low,Moderate,Low,Sometimes,Rare,High,High,
+30/10/2023 14:11:36,Brazil,Between 1 and 3 years,6 or more projects,Occasionally,Occasionally,Often,Rare,High,High,Very low,Low,Often,Sometimes,Moderate,Moderate,
+30/10/2023 18:22:49,Brazil,Between 1 and 3 years,3-5 projects,Occasionally,Rare,Very rare,Very rare,Moderate,Moderate,Moderate,Moderate,Rare,Occasionally,Moderate,High,
+30/10/2023 18:50:01,Brazil,Between 3 and 5 years,6 or more projects,Sometimes,Rare,Occasionally,Sometimes,Very high,Moderate,Low,Moderate,,,Low,Low,
+30/10/2023 20:30:36,Brazil,Less than 1 year,3-5 projects,Often,Occasionally,Sometimes,Occasionally,High,Moderate,Moderate,Low,Sometimes,Often,Moderate,Moderate,
+30/10/2023 23:15:40,Brazil,Between 1 and 3 years,6 or more projects,Sometimes,Occasionally,Rare,Very rare,High,Very high,Moderate,Very low,Often,Rare,Low,Very high,
+01/11/2023 08:43:59,Brazil,Less than 1 year,3-5 projects,Very rare,Very rare,Rare,Occasionally,Very high,Very high,High,Low,Often,Rare,Low,Very high,
+03/11/2023 15:18:51,United Kingdom,Between 3 and 5 years,1-2 projects,Sometimes,Often,Often,Rare,Very high,Very high,Low,Low,Rare,Rare,Moderate,High,
+03/11/2023 16:04:37,United States of America,Between 3 and 5 years,6 or more projects,Very rare,Rare,Often,Very rare,Very high,High,Very low,Very low,Very rare,Very rare,Very high,Very low,"Typescript enums are strictly worse than unions of string literals. Not assigning a value explicitly is not a code smell, it doesn’t matter at all. Missing union type abstraction is also not a code smell, as introducing abstractions unnecessarily can reduce readability "
+04/11/2023 08:10:57,Croatia,Less than 1 year,1-2 projects,Very rare,Sometimes,Very rare,Very rare,High,High,Low,Low,Rare,Very rare,Very low,Moderate,
+13/11/2023 14:47:28,Brazil,Between 3 and 5 years,6 or more projects,Sometimes,Occasionally,Occasionally,Sometimes,High,Moderate,Low,Moderate,Sometimes,Often,High,Very high,
+16/11/2023 13:55:44,Brazil,Between 1 and 3 years,3-5 projects,Sometimes,Very rare,Rare,Very rare,Moderate,High,Moderate,High,Sometimes,Very rare,High,Very high,
+19/11/2023 16:25:58,Brazil,Between 3 and 5 years,6 or more projects,Sometimes,Rare,Occasionally,Very rare,Moderate,High,Low,Very low,Occasionally,Very rare,Low,High,
+22/11/2023 08:39:44,Brazil,Between 1 and 3 years,3-5 projects,Sometimes,Sometimes,Occasionally,Rare,Very high,Very high,Moderate,Moderate,Sometimes,Rare,High,High,
+24/11/2023 09:54:31,Brazil,Between 1 and 3 years,6 or more projects,Sometimes,Rare,Rare,Rare,Very high,Very high,Very high,Very high,Sometimes,Very rare,Very high,Very high,
+24/11/2023 11:22:07,Brazil,Between 1 and 3 years,6 or more projects,Often,Sometimes,Often,Very rare,Very high,Very high,Moderate,Very high,Sometimes,Very rare,High,Very high,
+24/11/2023 11:25:18,Brazil,Less than 1 year,1-2 projects,Sometimes,Sometimes,Sometimes,Sometimes,High,High,High,High,Sometimes,Sometimes,High,High,
+24/11/2023 11:27:21,Brazil,Between 3 and 5 years,6 or more projects,Sometimes,Sometimes,Often,Often,High,Very high,High,High,Sometimes,Often,Very high,Very high,
+24/11/2023 11:31:13,Brazil,Less than 1 year,1-2 projects,Sometimes,Sometimes,Rare,Rare,High,Low,High,Low,Rare,Sometimes,Low,Low,
+24/11/2023 11:35:47,Brazil,Between 1 and 3 years,6 or more projects,Rare,Occasionally,Sometimes,Rare,Very high,Very high,Moderate,Low,Sometimes,Very rare,Very high,Very high,I love when the components are not exported default.
+24/11/2023 12:26:15,Brazil,Less than 1 year,1-2 projects,Rare,Very rare,Very rare,Rare,Very low,Low,Low,Very low,Very rare,Rare,Very low,Low,
+24/11/2023 15:56:31,Brazil,Between 1 and 3 years,1-2 projects,Very rare,Very rare,Very rare,Very rare,Moderate,Moderate,Moderate,Moderate,Very rare,Very rare,Very low,Very low,
+24/11/2023 18:07:17,Brazil,Between 1 and 3 years,6 or more projects,Rare,Very rare,Rare,Very rare,Moderate,High,Moderate,Very high,Often,Very rare,High,High,
+25/11/2023 00:21:41,Brazil,Less than 1 year,1-2 projects,Sometimes,Very rare,Very rare,Very rare,Low,Very low,Moderate,Low,Occasionally,Very rare,Moderate,High,
+25/11/2023 14:49:34,Brazil,Between 1 and 3 years,6 or more projects,Often,Rare,Rare,Very rare,Very high,Very high,Moderate,Moderate,Often,Very rare,High,High,
