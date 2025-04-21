@@ -2,9 +2,13 @@
   "name": "snifftsx",
   "version": "1.0.0",
   "description": "A tool for detecting code smells in React with TypeScript projects",
-  "main": "index.js",
+  "main": "index.js",  
+  "bin": {
+    "sniff": "dist/lib/index.js"
+  },
   "scripts": {
     "build": "tsc --outDir dist",
+    "postinstall": "tsc",
     "start": "node dist/lib/index.js test/components",
     "start:dev": "tsx lib/index.ts test/components",
     "test": "vitest",
