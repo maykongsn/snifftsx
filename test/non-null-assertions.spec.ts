@@ -6,8 +6,8 @@ import { nonNullAssertions } from "../lib/smells/non-null-assertions";
 describe("Non-Null Assertions", () => {
   test("should return two occurrences of Non-Null Assertions", () => {
     const expectedOutput = [
-      { start: 15, end: 15, filename: 'test/components/NonNull.tsx' },
-      { start: 17, end: 17, filename: 'test/components/NonNull.tsx' }
+      { start: 15, end: 15 },
+      { start: 17, end: 17 }
     ];
 
     const ast = parseAST(mockNonNullAssertions);

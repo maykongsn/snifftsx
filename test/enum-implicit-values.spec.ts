@@ -6,7 +6,7 @@ import { enumImplicitValues } from "../lib/smells/enum-implicit-values";
 describe("Enum Implicit Values", () => {
   test("should return an occurrence of Enum Implicit Values", () => {
     const expectedOutput = [
-      { start: 3, end: 8, filename: 'test/components/Enum.tsx' }
+      { start: 3, end: 8 }
     ];
 
     const ast = parseAST(mockEnumImplicitValues);

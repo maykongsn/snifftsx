@@ -5,20 +5,19 @@ import { SourceLocation } from "../types";
 
 export const enumImplicitValues = (ast: ParseResult<File>) => {
   const enums: SourceLocation[] = [];
-  
+
   traverse(ast, {
     TSEnumDeclaration(path) {
       const hasAllMembersWithConstants = path.node.members.every((member) => member.initializer);
 
-      if(!hasAllMembersWithConstants) {
+      if (!hasAllMembersWithConstants) {
         enums.push({
           start: path.node.loc?.start.line,
           end: path.node.loc?.end.line,
-          filename: path.node.loc?.filename
         });
       }
     }
   });
-  
+
   return enums;
 }

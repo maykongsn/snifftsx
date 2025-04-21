@@ -8,33 +8,27 @@ describe("Multiple Booleans for State", () => {
     const expectedOutput = [
       {
         start: 5,
-        end: 5,
-        filename: 'test/components/MultipleBooleans.tsx'
+        end: 5
       },
       {
         start: 6,
-        end: 6,
-        filename: 'test/components/MultipleBooleans.tsx'
+        end: 6
       },
       {
         start: 7,
-        end: 7,
-        filename: 'test/components/MultipleBooleans.tsx'
+        end: 7
       },
       {
         start: 8,
-        end: 8,
-        filename: 'test/components/MultipleBooleans.tsx'
+        end: 8
       },
       {
         start: 9,
-        end: 9,
-        filename: 'test/components/MultipleBooleans.tsx'
+        end: 9
       },
       {
         start: 10,
-        end: 10,
-        filename: 'test/components/MultipleBooleans.tsx'
+        end: 10
       }
     ];
 

@@ -1,52 +1,70 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { TSXFile } from "../types";
-import { parseAST } from "./parser";
 
-import { anyType } from "../smells/any-type";
-import { nonNullAssertions } from "../smells/non-null-assertions";
-import { missingUnionTypeAbstraction } from "../smells/missing-union-type-abstraction";
-import { enumImplicitValues } from "../smells/enum-implicit-values";
-import { multipleBooleansForState } from "../smells/multiple-booleans-for-state";
-import { overlyFlexibleProps } from "../smells/overly-flexible-props";
+const isValidPath = async (inputPath: string): Promise<boolean> => {
+  return await fs.stat(inputPath).then(() => true).catch(() => false);
+}
 
-async function* readFiles(dirname: string): AsyncGenerator<TSXFile> {
-  if(!(await fs.access(dirname).then(() => true).catch(() => false))) {
+type LineRange = { 
+  startLine: number, 
+  endLine: number
+};
+
+export const readTSXFile = async (
+  filePath: string,
+  range?: LineRange
+): Promise<TSXFile> => {
+  const content = await fs.readFile(filePath, "utf-8");
+
+  if (range) {
+    return { 
+      path: filePath, 
+      content: content.split("\n").slice(range.startLine - 1, range.endLine).join("\n") 
+    };
+  }
+
+  return { path: filePath, content };
+}
+
+const readDirectory = async (dirPath: string): Promise<TSXFile[]> => {
+  const directoryEntries = await fs.readdir(dirPath, { withFileTypes: true });
+
+  const filePromises = directoryEntries.map(async (entry) => {
+    const fullPath = path.join(dirPath, entry.name);
+    
+    if (entry.isDirectory()) {
+      return readDirectory(fullPath);
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.tsx')) {
+      return readTSXFile(fullPath);
+    }
+
+    return [];
+  });
+
+  const files = await Promise.all(filePromises);
+
+  return files.flat();
+}
+
+export async function readFiles(inputPath: string): Promise<TSXFile[]> {
+  if (!isValidPath(inputPath)) {
     console.log("Please provide a valid directory");
     process.exit(0);
   }
 
-  const directoryEntries = await fs.readdir(dirname, { withFileTypes: true });
+  const stats = await fs.stat(inputPath);
 
-  for(const directoryEntry of directoryEntries) {
-    const fullPath = path.join(dirname, directoryEntry.name);
-
-    if(directoryEntry.isDirectory()) {
-      yield* readFiles(fullPath);
-    }
-
-    if(directoryEntry.isFile() && directoryEntry.name.endsWith(".tsx")) {
-      const content = await fs.readFile(fullPath, 'utf-8');
-      yield { path: fullPath, content };
-    }
+  if (stats.isFile() && inputPath.endsWith(".tsx")) {
+    return [await readTSXFile(inputPath)];
   }
-}
 
-export async function processFiles(path: string) {
-  for await (const file of readFiles(path)) {
-    const ast = parseAST(file);
-
-    const anyTypeSmells = anyType(ast);
-    const nonNullSmells = nonNullAssertions(ast);
-    const missingUnionSmells = missingUnionTypeAbstraction(ast);
-    const enumImplicitSmells = enumImplicitValues(ast);
-    const multipleBooleansSmells = multipleBooleansForState(ast);
-    const overlyFlexibleSmells = overlyFlexibleProps(ast);    
-    console.log(anyTypeSmells);
-    console.log(nonNullSmells);
-    console.log(missingUnionSmells);
-    console.log(enumImplicitSmells);
-    console.log(multipleBooleansSmells);
-    console.log(overlyFlexibleSmells)
+  if (stats.isDirectory()) {
+    return readDirectory(inputPath);
   }
+
+  console.log("The provided path is neither a valid file or a directory");
+  process.exit(0);
 }

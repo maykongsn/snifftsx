@@ -1,32 +1,40 @@
 import { ParseResult } from "@babel/parser";
 import traverse from "@babel/traverse";
-import { File } from "@babel/types";
 import { SourceLocation } from "../types";
-import { TSType } from "@babel/types";
-import { TSLiteralType, TSTypeReference } from "babel-types";
+import { File, TSType, isTSLiteralType, isTSTypeReference } from "@babel/types";
+
+type UnionMember = string | number | boolean | bigint;
 
 type Union = {
-  members: string[];
+  members: UnionMember[];
 } & SourceLocation;
 
 const findTypeNode = (typeNodes: TSType[]) =>
   typeNodes.find((typeNode) =>
-    typeNode.literal ?? (typeNode.type === "TSTypeReference" ? typeNode.typeName : typeNode)
+    typeNode.type === "TSTypeReference" || typeNode.type === "TSLiteralType"
   )?.loc
 
-// TODO: correct types for literal and reference nodes
-const typeLiteralHandler = (typeNode: TSType): string => typeNode.literal.value;  
-const typeReferenceHandler = (typeNode: TSType): string => typeNode.typeName.name;
+const typeLiteralHandler = (typeNode: TSType) =>
+  isTSLiteralType(typeNode) && 
+  'value' in typeNode.literal 
+    ? typeNode.literal.value 
+    : defaultHandler(typeNode);
+
+const typeReferenceHandler = (typeNode: TSType): string =>
+  isTSTypeReference(typeNode) &&
+  'name' in typeNode.typeName 
+    ? typeNode.typeName.name 
+    : defaultHandler(typeNode);
+
 const defaultHandler = (typeNode: TSType) => typeNode.type;
 
-const handlers: { [key: string]: (typeNode: TSType) => string } = {
+const handlers: { [key: string]: (typeNode: TSType) => UnionMember } = {
   TSTypeReference: typeReferenceHandler,
   TSLiteralType: typeLiteralHandler,
 };
 
-const mapMember = (typeNode: TSType) => {
-  return (handlers[typeNode.type] ?? defaultHandler)(typeNode);
-}
+const mapMember = (typeNode: TSType) =>
+  (handlers[typeNode.type]?.(typeNode) ?? defaultHandler(typeNode));
 
 export const missingUnionTypeAbstraction = (ast: ParseResult<File>) => {
   const unionTypes: Union[] = [];
@@ -40,8 +48,7 @@ export const missingUnionTypeAbstraction = (ast: ParseResult<File>) => {
       unionTypes.push({
         members: path.node.types.map(mapMember),
         start: loc?.start.line,
-        end: loc?.end.line,
-        filename: loc?.filename
+        end: loc?.end.line
       });
     }
   });

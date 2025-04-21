@@ -6,16 +6,14 @@ import { overlyFlexibleProps } from "../lib/smells/overly-flexible-props";
 describe("Overly Flexible Props", () => {
   test("should return three occurrences of Overly Flexible Props", () => {
     const expectedOutput = [
-      { start: 9, end: 16, filename: 'test/components/OverlyFlexible.tsx' },
+      { start: 9, end: 16 },
       {
         start: 18,
-        end: 18,
-        filename: 'test/components/OverlyFlexible.tsx'
+        end: 18
       },
       {
         start: 20,
-        end: 20,
-        filename: 'test/components/OverlyFlexible.tsx'
+        end: 20
       }
     ];
 

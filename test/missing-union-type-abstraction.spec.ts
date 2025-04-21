@@ -9,20 +9,17 @@ describe("Missing Union Type Abstraction", () => {
       {
         members: [ 'circle', 'square' ],
         start: 3,
-        end: 3,
-        filename: 'test/components/MissingUnion.tsx'
+        end: 3
       },
       {
         members: [ 'circle', 'square' ],
         start: 5,
-        end: 5,
-        filename: 'test/components/MissingUnion.tsx'
+        end: 5
       },
       {
         members: [ 'circle', 'square' ],
         start: 9,
-        end: 9,
-        filename: 'test/components/MissingUnion.tsx'
+        end: 9
       }
     ];
 

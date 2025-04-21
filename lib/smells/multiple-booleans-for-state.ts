@@ -1,6 +1,6 @@
 import { ParseResult } from "@babel/parser";
 import traverse from "@babel/traverse";
-import { File, isBooleanLiteral } from "@babel/types";
+import { File, isBooleanLiteral, isIdentifier, isMemberExpression } from "@babel/types";
 import { SourceLocation } from "../types";
 
 export const multipleBooleansForState = (ast: ParseResult<File>) => {
@@ -8,20 +8,20 @@ export const multipleBooleansForState = (ast: ParseResult<File>) => {
 
   traverse(ast, {
     CallExpression(path) {
-      if (
-        path.node.callee.type === "Identifier" || path.node.callee.type === "MemberExpression" &&
-        path.node.callee.name === "useState" &&
-        path.node.arguments.length > 0 &&
-        isBooleanLiteral(path.node.arguments[0])
-      ) {
+      const { callee, arguments: args } = path.node;
+
+      const isUseStateCall = 
+        (isIdentifier(callee) && callee.name === "useState") ||
+        (isMemberExpression(callee) && isIdentifier(callee.property) && callee.property.name === "useState");
+      
+      if (isUseStateCall && args.length > 0 && isBooleanLiteral(args[0])) {
         states.push({
           start: path.node.callee.loc?.start.line,
-          end: path.node.callee.loc?.end.line,
-          filename: path.node.callee.loc?.filename
+          end: path.node.callee.loc?.end.line
         });
       }
     }
   });
 
-  return states.length > 4 ? states : []
+  return states.length > 4 ? states : [];
 }

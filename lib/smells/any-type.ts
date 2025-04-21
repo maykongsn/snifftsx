@@ -4,12 +4,12 @@ import traverse from "@babel/traverse";
 import { SourceLocation } from "../types";
 
 export const anyType = (ast: ParseResult<File>) => {
-  const locations: SourceLocation[] = [];
-  
+  const any: SourceLocation[] = [];
+
   traverse(ast, {
     enter(path) {
-      if(isTSAnyKeyword(path.node)) {
-        locations.push({
+      if (isTSAnyKeyword(path.node)) {
+        any.push({
           start: path.node.loc?.start.line,
           end: path.node.loc?.end.line,
           filename: path.node.loc?.filename
@@ -17,6 +17,6 @@ export const anyType = (ast: ParseResult<File>) => {
       }
     }
   });
-
-  return locations;
+  
+  return any;
 }
