@@ -4,11 +4,13 @@
   "description": "A tool for detecting code smells in React with TypeScript projects",
   "main": "dist/lib/index.js",  
   "bin": {
-    "sniff": "dist/lib/index.js"
+    "sniff": "dist/index.js"
   },
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "build": "tsc --outDir dist",
-    "postinstall": "tsc",
     "start": "node dist/lib/index.js test/components",
     "start:dev": "tsx lib/index.ts test/components",
     "test": "vitest",
