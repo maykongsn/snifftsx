@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { analyze } from "./analyzer";
 import { runReactSniffer } from "./reactsniffer";
 import { appendToCsv } from "./utils/csv-output";

@@ -7,7 +7,7 @@
     "sniff": "dist/index.js"
   },
   "files": [
-    "lib/"
+    "dist/"
   ],
   "scripts": {
     "build": "tsc --outDir dist",
