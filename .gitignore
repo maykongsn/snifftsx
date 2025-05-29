@@ -4,5 +4,6 @@ dist
 node_modules
 
 .vscode
+GITHUB_TOKEN.env
 
 coverage
