@@ -25,12 +25,12 @@ type Analyzers = {
 
 export const analyzeFile = (file: TSXFile): AnalysisOutput => {
   const ast = parseAST(file);
-  
+
   const analyzers: Analyzers = {
     missingUnionTypeAbstraction,
     multipleBooleansForState,
     anyType,
-    enumImplicitValues,
+    enumImplicitValues: (ast) => enumImplicitValues(ast, file.path),
     nonNullAssertions,
     overlyFlexibleProps
   };
@@ -39,8 +39,8 @@ export const analyzeFile = (file: TSXFile): AnalysisOutput => {
     [file.path]: Object.fromEntries(
       Object.entries(analyzers).map(([key, analyzer]) => [key, analyzer(ast)])
     )
-  }
-}
+  };
+};
 
 export const analyze = async (path: string) => {
   const analysis: AnalysisOutput[] = [];
