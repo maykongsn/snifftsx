@@ -23,5 +23,5 @@ export const multipleBooleansForState = (ast: ParseResult<File>) => {
     }
   });
 
-  return states.length > 4 ? states : [];
+  return states.length >= 4 ? states : [];
 }
